@@ -10,9 +10,19 @@ class Person{
 
 
     public function __construct(array $data) {
-        $this->setFirstname($data["firstname"]);
-        $this->setLastname($data["firstname"]);
+        // $this->setFirstname($data["firstname"]);
+        // $this->setLastname($data["firstname"]);
+        foreach($data as $key =>$value) {
 
+            $setter = "set" . ucfirst($key);
+
+            if(method_exists( $this, $setter)) {
+
+                $this->$setter($value);
+
+            }
+
+        }
     }
 
 
